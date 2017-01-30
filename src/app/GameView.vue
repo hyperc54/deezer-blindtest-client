@@ -15,6 +15,14 @@
         <player-component></player-component>
       </div>
     </div>
+    <div class="row">
+      <div class="input-group">
+        <input id="blast" type="text" class="form-control" placeholder="send something">
+        <span class="input-group-btn">
+          <button id="send" class="btn btn-success" type="button">Send</button>
+        </span>
+      </div><!-- /input-group -->
+    </div>
   </div>
 
 </template>
@@ -23,6 +31,8 @@
   import Timer from './game/Timer.vue';
   import Player from './game/Player.vue';
   import * as io from 'socket.io-client';
+
+  const socket = io.connect('http://172.16.6.133:3000');
 
   export default {
     name: 'GameView',
@@ -49,12 +59,47 @@
         }
       ];
 
-      const socket = io.connect('http://172.16.6.133:3000');
+      //SOCKET STUFF
       socket.emit('blindtest', {message: "Coucou c'est Pierre"});
+
       socket.on('blindtest', message => {
         console.log(message);
       });
 
+      socket.on('EndOfTrackMessage', message => {
+        DZ.player.pause();
+      });
+
+      socket.on('StartTrackMessage', message => {
+        this.$children[0].resetTimer();
+        DZ.player.playTracks([message.track]);
+      });
+
+      socket.on('NewPlayerMessage', message => {
+
+      });
+
     },
+    mounted() {
+      //JQUERY STUFF
+      var $blastField = $('#blast');
+      var $sendBlastButton = $('#send');
+
+      $sendBlastButton.click(function(e){
+        var blast = $blastField.val();
+        if(blast.length){
+          socket.emit("blindtest", {message:blast});
+          console.log('Envoyé');
+          $blastField.val('');
+        }
+      });
+
+      $blastField.keydown(function (e){
+        if(e.keyCode == 13){
+          $sendBlastButton.trigger('click');//lazy, but works
+        }
+      });
+
+    }
   };
 </script>

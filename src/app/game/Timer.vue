@@ -9,12 +9,18 @@
     name: 'Timer',
     data() {
       return {
+        timer_init:30,
         timer_client: 0
       };
     },
     methods: {
         decTimer: function() {
-          this.timer_client = this.timer_client-1;
+          if(this.timer_client > 0){
+            this.timer_client = this.timer_client-1;
+          }
+        },
+        resetTimer: function(){
+          this.timer_client = this.timer_init;
         }
     },
     created() {
