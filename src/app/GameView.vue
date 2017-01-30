@@ -16,12 +16,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="input-group">
-        <input id="blast" type="text" class="form-control" placeholder="send something">
-        <span class="input-group-btn">
-          <button id="send" class="btn btn-success" type="button">Send</button>
-        </span>
+      <div class="input-group" id="input-rep">
+        <input id="blast" type="text" class="form-control" placeholder="send something" autofocus>
       </div><!-- /input-group -->
+      <button id="send" class="btn btn-success" type="button">Send</button>
     </div>
   </div>
 

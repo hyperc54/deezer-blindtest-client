@@ -27,7 +27,7 @@ module.exports = {
           'style-loader',
           'css-loader',
           'sass-loader',
-          'postcss-loader'
+          'postcss-loader',
         ]
       },
       {
@@ -42,12 +42,17 @@ module.exports = {
         loaders: [
           'vue-loader'
         ]
+      },
+      {
+        test: /.png$/,
+        loaders: [
+          'file-loader'
+        ]
       }
     ]
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
     FailPlugin,
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html')

@@ -1,10 +1,15 @@
 <template>
   <div class="timer">
+    <ul>
+      <li class="chart" data-percent="75"><span>26</span>Jours</li>
+    </ul>
     {{ timer_client }}
   </div>
 </template>
 
 <script>
+  import './easypiechart.js'
+
   export default {
     name: 'Timer',
     data() {

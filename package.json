@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "file-loader": "^0.10.0",
+    "image-loader": "0.0.1",
     "socket.io": "^1.7.2",
     "vue": "^2.0.1",
     "vue-resource": "^0.9.3",

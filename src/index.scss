@@ -2,7 +2,13 @@ html, body, #root {
   margin: 0;
   height: 100%;
   font-family: 'Open Sans', sans-serif;
+  background: url(app/assets/img/bg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 
 body, h1, h2, h3 {
   font-weight: 300
@@ -127,3 +133,24 @@ a {
   max-width:60px;
   border-radius: 100%;
 }
+
+#blast{
+  background: transparent;
+  height: 60px;
+  font-size: x-large;
+}
+
+#input-rep{
+  width: 80%;
+  margin: auto;
+}
+
+#send{
+  width: 140px;
+  height: 56px;
+  border-radius: 6px;
+  background-color: #ea1ad5;
+  border:none;
+  font-size:24px;
+}
+
