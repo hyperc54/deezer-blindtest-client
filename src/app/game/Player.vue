@@ -19,7 +19,7 @@
     mounted(){
       DZ.init({
         appId  : '130151',
-        channelUrl : 'http://localhost:3002',
+        channelUrl : 'http://localhost:3000',
         player: {
           container: 'dz-root',
           width:0,

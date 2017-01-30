@@ -22,6 +22,7 @@
 <script>
   import Timer from './game/Timer.vue';
   import Player from './game/Player.vue';
+  import * as io from 'socket.io-client';
 
   export default {
     name: 'GameView',
@@ -46,7 +47,14 @@
           "name": "Pierre",
           "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
         }
-      ]
+      ];
+
+      const socket = io.connect('http://172.16.6.133:3000');
+      socket.emit('blindtest', {message: "Coucou c'est Pierre"});
+      socket.on('blindtest', message => {
+        console.log(message);
+      });
+
     },
   };
 </script>
