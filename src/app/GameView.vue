@@ -1,6 +1,5 @@
 <template>
   <div class="gameview">
-    <div class="row"></div>
     <div class="row">
         <h2>Players list</h2>
         <ul id="hor">
@@ -66,7 +65,7 @@
       ];
 
       //SOCKET STUFF
-      socket.emit('blindtest', {message: "Coucou c'est Pierre"});
+      socket.emit('ClientGuessMessage', {message: "Coucou c'est Pierre"});
 
       socket.on('blindtest', message => {
         console.log(message);

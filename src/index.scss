@@ -37,12 +37,66 @@ a {
 .header {
   display: flex;
   align-items: center;
-  background-color: rgba(31,31,31,0.2);
+  background-color: rgba(31,31,31,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  height:132px;
 }
 .header-title {
-  flex: 1;
+  text-align:left;
   font-size: 1.5rem;
   margin: 1rem;
+}
+
+.header-title-game{
+  text-align:center;
+  font-size: 3rem;
+  margin: 1rem;
+  width:50px;
+  margin-top:-10px;
+}
+
+.hd{
+  width:33%;
+}
+
+.header-game-img{
+  text-align:left;
+  height: 84.7px;
+  margin-left:50px;
+}
+
+.header-game-img img{
+  width: 160px;
+}
+
+.header-game-right{
+  text-align:right;
+  margin-right:50px;
+  opacity: 0.6;
+  color:white;
+  font-size:small;
+}
+
+.topics{
+  font-size:small;
+  color:#e100cb;
+}
+
+.sitcoms{
+  font-size:4rem;
+  color:whitesmoke;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  margin-top:-10px;
+}
+
+.header-centered-game{
+  -webkit-flex: 1; /* Safari 6.1+ */
+  flex: 1;
+  margin:auto;
 }
 
 .header-title a{
@@ -60,10 +114,9 @@ a {
 }
 
 .header-date {
-  flex: 1;
   text-align: right;
   margin: 1rem;
-  white: white;
+  color: white;
 }
 
 .title {
