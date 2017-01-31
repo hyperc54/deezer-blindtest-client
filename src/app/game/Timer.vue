@@ -1,9 +1,9 @@
 <template>
   <div class="timer">
-    <ul>
-      <li class="chart" data-percent="75"><span>26</span>Jours</li>
-    </ul>
-    {{ timer_client }}
+    <div class="timer-container">
+      <div class="chart" data-percent="73"></div>
+      <div class="value">{{ timer_client }}</div>
+    </div>
   </div>
 </template>
 
@@ -31,6 +31,16 @@
     created() {
       setInterval(this.decTimer, 1000);
       this.timer_client = 30;
+
+      $('.chart').easyPieChart({
+        scaleColor: false,
+        trackColor: 'rgba(255,255,255,0.2)',
+        barColor: '#ea1ad5',
+        lineWidth: 22,
+        lineCap: 'butt',
+        size: 350
+      });
+
     },
 
   };

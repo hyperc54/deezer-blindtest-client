@@ -1,7 +1,7 @@
 <template>
   <div class="title">
     <h1 class="title-h1">Welcome in Deezer own BlindTest app !</h1>
-    <h2 class="title-h2"><a href="/public">Join a room NOW</a></h2>
+    <a href="/public"><div class="title-h2"><h2>Play</br><span>NOW</span></h2></div></a>
   </div>
 </template>
 

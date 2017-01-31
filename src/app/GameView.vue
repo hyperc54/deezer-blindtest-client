@@ -11,15 +11,28 @@
       </div>
       <div class="col-sm-4">
         <h2>Player</h2>
-        <timer-component></timer-component>
+
         <player-component></player-component>
       </div>
     </div>
     <div class="row">
+      <timer-component></timer-component>
+    </div>
+    <div class="row">
+      <div class="sp-container">
+        <div class="sp-content">
+          <h2 class="frame-1"><span>Paul</span> thought it was</br> <span>Patrick Sebastien</span> HAHAHA</h2>
+        </div>
+      </div>
+      <div class="splashmsg">JE</div>
+    </div>
+    <div class="row">
       <div class="input-group" id="input-rep">
-        <input id="blast" type="text" class="form-control" placeholder="send something" autofocus>
+        <input id="blast" type="text" class="form-control" placeholder="" autofocus>
+        <div class="vspace20"></div>
+        <button id="send" class="btn btn-success" type="button">SEND</button>
       </div><!-- /input-group -->
-      <button id="send" class="btn btn-success" type="button">Send</button>
+
     </div>
   </div>
 
