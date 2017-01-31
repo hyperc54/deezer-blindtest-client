@@ -1,110 +1,101 @@
 <template>
   <div class="gameview">
     <div class="row">
-        <h2>Players list</h2>
-        <ul id="hor">
-          <li v-for="player in players">
-              <img :src="player.avatarUrl" class="player_avatar"><span>{{player.name}}</span>
-          </li>
-        </ul>
-        <player-component></player-component>
+      <h2>Players list</h2>
+      <ul id="hor">
+        <li v-for="player in players">
+          <img :src="player.avatarUrl" class="player_avatar"><span>{{player.name}}</span>
+        </li>
+      </ul>
+      <player-component></player-component>
     </div>
     <div class="row">
       <timer-component :countDown="countDown" ref='timer'></timer-component>
     </div>
-    <div class="row">
-      <div class="sp-container">
-        <div class="sp-content">
-          <h2 class="frame-1"><span>Paul</span> thought it was</br> <span>Patrick Sebastien</span> HAHAHA</h2>
-        </div>
-      </div>
-      <div class="splashmsg"></div>
-    </div>
-    <div class="row">
-      <div class="input-group" id="input-rep">
-        <input id="blast" type="text" class="form-control" placeholder="" autofocus>
-        <div class="vspace20"></div>
-        <button id="send" class="btn btn-success" type="button">SEND</button>
-      </div><!-- /input-group -->
-
-    </div>
+    <splash-message :showAnswer="showAnswer" user='Jean-Michel' :answer="answer"></splash-message>
+    <answer-bar @answerSent="sendAnswer"></answer-bar>
   </div>
 
 </template>
 
 <script>
-  import Timer from './game/Timer.vue';
-  import Player from './game/Player.vue';
-  import * as io from 'socket.io-client';
+import Timer from './game/Timer.vue';
+import Player from './game/Player.vue';
+import AnswerBar from './game/AnswerBar.vue';
+import SplashMessage from './game/SplashMessage.vue';
+import * as io from 'socket.io-client';
 
-  const socket = io.connect('http://172.16.6.133:3000');
+const socket = io.connect('http://172.16.6.133:3000');
 
-  export default {
-    name: 'GameView',
-    components: {
-      'timer-component': Timer,
-      'player-component': Player
+export default {
+  name: 'GameView',
+  components: {
+    'timer-component': Timer,
+    'player-component': Player,
+    'answer-bar': AnswerBar,
+    'splash-message': SplashMessage
+  },
+  data() {
+    return {
+      players: [],
+      countDown: 30,
+      socket: null,
+      showAnswer: false
+    };
+  },
+  created() {
+    this.players = [
+      {
+        "id": 1,
+        "name": "Jean",
+        "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Pierre",
+        "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
+      }
+    ];
+
+    this.socket = io.connect('http://localhost:3000');
+    this.room = 'playlist/998065951'
+    socket.emit('join', this.room);
+
+    socket.on('NewPlayerMessage', this.newPlayerSocketHandler);
+    socket.on('StartTrackMessage', this.startTrackSocketHandler);
+    socket.on('EndOfTrackMessage', this.endTrackSocketHandler);
+    socket.on('ServerBadAnswerMessage', this.serverBadwAnswerSocketHandler);
+  },
+  methods: {
+    newPlayerSocketHandler: function(message) {
+
     },
-    data() {
-      return {
-        players: [],
-        countDown: 30
-      };
+    startTrackSocketHandler: function(message) {
+      this.$refs.timer.resetTimer();
+      this.countDown = message.countDown;
+      DZ.player.playTracks([message.track]);
     },
-    created() {
-      this.players = [
-        {
-          "id": 1,
-          "name": "Jean",
-          "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
-        },
-        {
-          "id": 2,
-          "name": "Pierre",
-          "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
-        }
-      ];
-
-      const socket = io.connect('http://localhost:3000');
-      socket.emit('join', 'Room1');
-
-      socket.on('EndOfTrackMessage', message => {
-        console.log(message);
-        DZ.player.pause();
-      });
-
-      let self = this;
-      socket.on('StartTrackMessage', message => {
-        self.$refs.timer.resetTimer();
-        self.countDown = message.countDown;
-        DZ.player.playTracks([message.track]);
-      });
-
-      socket.on('NewPlayerMessage', message => {
-
-      });
-
+    endTrackSocketHandler: function(message) {
+      console.log(message);
+      DZ.player.pause();
     },
-    mounted() {
-      //JQUERY STUFF
-      var $blastField = $('#blast');
-      var $sendBlastButton = $('#send');
-
-      $sendBlastButton.click(function(e){
-        var blast = $blastField.val();
-        if(blast.length){
-          socket.emit("blindtest", {message:blast});
-          console.log('Envoyé');
-          $blastField.val('');
-        }
-      });
-
-      $blastField.keydown(function (e){
-        if(e.keyCode == 13){
-          $sendBlastButton.trigger('click');//lazy, but works
-        }
-      });
-
+    
+    serverBadwAnswerSocketHandler: function(message) {
+      this.answer = message.guess;
+      this.showAnswer = true;
+      setTimeout(() => {
+        this.showAnswer = false;
+      }, 2000);
     }
-  };
+
+    sendAnswer: function(answer) {
+      const message = {
+        "room": this.room,
+        "guess": answer,
+        "trackTime": this.$refs.timer.timerClient
+      };
+      this.socket.emit('ClientGuessMessage', message);
+    }
+  }
+};
 </script>
