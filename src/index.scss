@@ -156,6 +156,7 @@ a {
   font-weight: 300;
   font-size: 4rem;
   margin: 1rem;
+  font-family:"GothamBook";
 }
 .title-logo {
   height: 12rem;
@@ -176,6 +177,9 @@ a {
   padding:auto;
   transform: rotate(15deg);
   padding-top:25px;
+
+  animation: coolRotate 3s ease-in-out infinite;
+
 }
 
 .title-h2 span{
@@ -382,6 +386,19 @@ ul#hor {
     opacity: 0;
     text-shadow: 0px 0px 50px #fff;
     transform: rotate(30deg) scale(0);
+  }
+}
+
+
+@keyframes coolRotate{
+  0%{
+    transform: rotate(15deg);
+  }
+  50%{
+    transform: rotate(-15deg);
+  }
+  100%{
+     transform: rotate(15deg);
   }
 }
 
