@@ -278,6 +278,7 @@ a:hover{
   width:150px;
   height:150px;
   margin:auto;
+  margin-top: 50px;
 }
 
 .value{
@@ -338,6 +339,8 @@ ul#hor li {
 ul#hor {
   margin-top:-25px;
   list-style-type : none; /* Car sinon les puces se placent n'importe où */
+  text-align:center;
+  padding-left: 0;
 }
 
 

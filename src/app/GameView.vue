@@ -82,14 +82,14 @@ export default {
       console.log(message);
       DZ.player.pause();
     },
-    
+
     serverBadwAnswerSocketHandler: function(message) {
       this.answer = message.guess;
       this.showAnswer = true;
       setTimeout(() => {
         this.showAnswer = false;
       }, 2000);
-    }
+    },
 
     sendAnswer: function(answer) {
       const message = {
