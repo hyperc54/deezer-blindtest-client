@@ -341,9 +341,9 @@ $(function() {
     scaleColor: false,
     trackColor: 'rgba(255,255,255,0.2)',
     barColor: '#ea1ad5',
-    lineWidth: 22,
+    lineWidth: 16,
     lineCap: 'butt',
-    size: 250
+    size: 150
   });
 });
 

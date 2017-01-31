@@ -48,6 +48,18 @@ module.exports = {
         loaders: [
           'file-loader'
         ]
+      },
+      {
+        test: /.otf/,
+        loaders: [
+          'file-loader'
+        ]
+      },
+      {
+        test: /.ttf/,
+        loaders: [
+          'file-loader'
+        ]
       }
     ]
   },

@@ -1,10 +1,11 @@
 <template>
   <div class="gameview">
     <div class="row">
-        <h2>Players list</h2>
         <ul id="hor">
           <li v-for="player in players">
-              <img :src="player.avatarUrl" class="player_avatar"><span>{{player.name}}</span>
+            <img :src="player.avatarUrl" class="player_avatar">
+            <span>{{player.name}}</span>
+            <span class="score">{{player.score}}</span>
           </li>
         </ul>
         <player-component></player-component>
@@ -56,12 +57,14 @@
         {
           "id": 1,
           "name": "Jean",
-          "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
+          "avatarUrl": "http://i.imgur.com/Cxagv.jpg",
+          "score":2
         },
         {
           "id": 2,
           "name": "Pierre",
-          "avatarUrl": "http://i.imgur.com/Cxagv.jpg"
+          "avatarUrl": "http://i.imgur.com/Cxagv.jpg",
+          "score":10
         }
       ];
 

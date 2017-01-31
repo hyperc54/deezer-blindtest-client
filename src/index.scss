@@ -1,3 +1,23 @@
+@font-face {
+  font-family: "Gotham";
+  src: url(app/assets/font/GothamNarrow-Medium.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "GothamBold";
+  src: url(app/assets/font/GothamNarrow-Bold.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "GothamBook";
+  src: url(app/assets/font/GothamNarrow-Book.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "bernie";
+  src: url(app/assets/font/BERNIE.ttf) format("truetype");
+}
+
 html, body, #root {
   margin: 0;
   height: 100%;
@@ -75,11 +95,14 @@ a {
   opacity: 0.6;
   color:white;
   font-size:small;
+
+  font-family:"GothamBook";
 }
 
 .topics{
   font-size:small;
   color:#e100cb;
+  font-family:"GothamBook";
 }
 
 .sitcoms{
@@ -91,6 +114,7 @@ a {
   line-height: normal;
   letter-spacing: 0.4px;
   margin-top:-10px;
+  font-family:"GothamBook";
 }
 
 .header-centered-game{
@@ -125,7 +149,7 @@ a {
   align-items: center;
   padding: 1rem;
 
-  margin-top:220px;
+  margin-top:180px;
   color: white;
 }
 .title-h1 {
@@ -218,13 +242,6 @@ a:hover{
   width:80%;
 }
 
-.player_avatar{
-  overflow:hidden;
-  object-fit: cover;
-  width:60px;
-  height:60px;
-  border-radius: 100%;
-}
 
 #blast{
   background: transparent;
@@ -249,6 +266,8 @@ a:hover{
   font-size:24px;
   margin-left: auto;
   margin-right: auto;
+
+  font-family:"GothamBook";
 }
 
 .vspace{
@@ -256,36 +275,68 @@ a:hover{
 }
 
 .timer-container{
-  width:250px;
-  height:250px;
+  width:150px;
+  height:150px;
   margin:auto;
 }
 
 .value{
   position:relative;
-  top:-220px;
-  width:250px;
+  top:-127px;
+  width:150px;
   text-align:center;
-  font-size:12rem;
+  font-size:7rem;
   color:whitesmoke;
+  font-family:"GothamBold";
 }
 
 .splashmsg{
+  font-family:"bernie";
   height:200px;
 }
 
 
+.player_avatar{
+  display : block;
+  margin:auto;
+  overflow:hidden;
+  object-fit: cover;
+  width:60px;
+  height:60px;
+  border-radius: 100%;
+}
+
+ul#hor .score{
+  display : block;
+  width: 100px;
+  height:100px;
+  color: #eccde7;
+  padding:10px;
+  border-radius: 6px;
+  border: solid 1px rgba(255,255,255,0.25);
+  border-top-color:rgba(255,255,255,0.05);
+  font-size:6rem;
+  margin-top:-10px;
+
+  font-family:"GothamBold";
+
+}
+
 ul#hor span {
-  position:relative;
-  top: 50px;
-  right: 50px;
-  color: #8d8d8d;
+  display : block;
+  color: #eccde7;
+  margin:auto;
+  margin-top:5px;
 }
 ul#hor li {
-  display : inline;
-  padding : 0 1em; /* Pour espacer les boutons entre eux */
+  display : inline-block;
+  width:120px;
+  height:100px;
+  margin:0 2em;
+  text-align:center;
 }
 ul#hor {
+  margin-top:-25px;
   list-style-type : none; /* Car sinon les puces se placent n'importe où */
 }
 
