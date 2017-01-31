@@ -72,6 +72,7 @@ a {
   align-items: center;
   padding: 1rem;
 
+  margin-top:220px;
   color: white;
 }
 .title-h1 {
@@ -86,6 +87,7 @@ a {
   margin: 1rem;
 }
 .title-h2 {
+  top:50%;
   font-weight: 300;
   font-size: 3rem;
   margin: .5rem;
@@ -95,7 +97,7 @@ a {
   border-radius:100%;
   text-align:center;
   padding:auto;
-  rotate:15;
+  transform: rotate(15deg);
   padding-top:25px;
 }
 
@@ -216,8 +218,24 @@ a:hover{
 }
 
 .splashmsg{
-  height:100px;
+  height:200px;
 }
+
+
+ul#hor span {
+  position:relative;
+  top: 50px;
+  right: 50px;
+  color: #8d8d8d;
+}
+ul#hor li {
+  display : inline;
+  padding : 0 1em; /* Pour espacer les boutons entre eux */
+}
+ul#hor {
+  list-style-type : none; /* Car sinon les puces se placent n'importe où */
+}
+
 
 .sp-container h2 {
   position: absolute;

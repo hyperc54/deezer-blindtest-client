@@ -2,18 +2,13 @@
   <div class="gameview">
     <div class="row"></div>
     <div class="row">
-      <div class="col-sm-8">
         <h2>Players list</h2>
-        <ul>
-          <li v-for="player in players"><img :src="player.avatarUrl" class="player_avatar">{{player.id}} - {{player.name}}</li>
+        <ul id="hor">
+          <li v-for="player in players">
+              <img :src="player.avatarUrl" class="player_avatar"><span>{{player.name}}</span>
+          </li>
         </ul>
-        <h2>Current responses</h2>
-      </div>
-      <div class="col-sm-4">
-        <h2>Player</h2>
-
         <player-component></player-component>
-      </div>
     </div>
     <div class="row">
       <timer-component></timer-component>
@@ -24,7 +19,7 @@
           <h2 class="frame-1"><span>Paul</span> thought it was</br> <span>Patrick Sebastien</span> HAHAHA</h2>
         </div>
       </div>
-      <div class="splashmsg">JE</div>
+      <div class="splashmsg"></div>
     </div>
     <div class="row">
       <div class="input-group" id="input-rep">
