@@ -45,41 +45,25 @@ export default {
     };
   },
   created() {
-    this.players = [
-      {
-        "id": 1,
-        "name": "Jean",
-        "avatarUrl": "http://i.imgur.com/Cxagv.jpg",
-	"score": 2
-      },
-      {
-        "id": 2,
-        "name": "Pierre",
-        "avatarUrl": "http://i.imgur.com/Cxagv.jpg",
-	"score": 10
-      }
-    ];
+    window.socket = this.socket = io.connect('http://localhost:3000');
+    window.room = this.room = 'playlist/998065951'
 
-    this.socket = io.connect('http://localhost:3000');
-    this.room = 'playlist/998065951'
-    socket.emit('join', this.room);
-
-    socket.on('NewPlayerMessage', this.newPlayerSocketHandler);
-    socket.on('StartTrackMessage', this.startTrackSocketHandler);
-    socket.on('EndOfTrackMessage', this.endTrackSocketHandler);
-    socket.on('ServerBadAnswerMessage', this.serverBadwAnswerSocketHandler);
+    this.socket.on('NewPlayerMessage', this.newPlayerSocketHandler);
+    this.socket.on('StartTrackMessage', this.startTrackSocketHandler);
+    this.socket.on('EndOfTrackMessage', this.endTrackSocketHandler);
+    this.socket.on('ServerBadAnswerMessage', this.serverBadwAnswerSocketHandler);
   },
   methods: {
     newPlayerSocketHandler: function(message) {
-
+      console.log(message.players)
+      this.players = message.players;
     },
+
     startTrackSocketHandler: function(message) {
       this.$refs.timer.resetTimer();
-      this.countDown = message.countDown;
-      DZ.player.playTracks([message.track]);
+      DZ.player.playTracks([message.id]);
     },
     endTrackSocketHandler: function(message) {
-      console.log(message);
       DZ.player.pause();
     },
 
