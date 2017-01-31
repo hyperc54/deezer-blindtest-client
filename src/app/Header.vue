@@ -1,11 +1,5 @@
 <template>
-  <header class="header">
-    <p class="header-title">
-      <a href="deezer.com"><span>Deezer</span> BlindTest</a>
-    </p>
-    <p class="header-date">
-      Generated with FountainJS v0.6.0 on Wed Aug 10 2016 10:13:26 GMT+0200 (CEST)
-    </p>
+  <header class="header2">
   </header>
 </template>
 
