@@ -10,7 +10,7 @@
         <player-component></player-component>
     </div>
     <div class="row">
-      <timer-component></timer-component>
+      <timer-component :countDown="countDown" ref='timer'></timer-component>
     </div>
     <div class="row">
       <div class="sp-container">
@@ -47,7 +47,8 @@
     },
     data() {
       return {
-        players: []
+        players: [],
+        countDown: 30
       };
     },
     created() {
@@ -64,19 +65,18 @@
         }
       ];
 
-      //SOCKET STUFF
-      socket.emit('ClientGuessMessage', {message: "Coucou c'est Pierre"});
-
-      socket.on('blindtest', message => {
-        console.log(message);
-      });
+      const socket = io.connect('http://localhost:3000');
+      socket.emit('join', 'Room1');
 
       socket.on('EndOfTrackMessage', message => {
+        console.log(message);
         DZ.player.pause();
       });
 
+      let self = this;
       socket.on('StartTrackMessage', message => {
-        this.$children[0].resetTimer();
+        self.$refs.timer.resetTimer();
+        self.countDown = message.countDown;
         DZ.player.playTracks([message.track]);
       });
 
