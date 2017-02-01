@@ -32,21 +32,23 @@
           this.timerClient = this.countDown;
         }
     },
-    created() {
-      setInterval(this.decTimer, 1000);
+    mounted() {
+      this.interval = setInterval(this.decTimer, 1000);
       this.timerClient = this.countDown;
 
       $('.chart').easyPieChart({
         scaleColor: false,
         trackColor: 'rgba(255,255,255,0.2)',
         barColor: '#ea1ad5',
-        lineWidth: 22,
+        lineWidth: 16,
         lineCap: 'butt',
-        size: 350,
+        size: 150,
         animate: 200
       });
-
     },
+    beforeDestroy() {
+      clearInterval(this.interval);
+    }
 
   };
 </script>

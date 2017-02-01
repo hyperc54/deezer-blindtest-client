@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script >
 export default {
   name: 'AnswerBar',
   data() {
@@ -23,6 +23,7 @@ export default {
   methods: {
       sendAnswer: function() {
         this.$emit('answerSent', this.answer);
+        this.answer="";
       }
   }
 };

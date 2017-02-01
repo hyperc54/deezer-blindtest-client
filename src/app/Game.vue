@@ -1,21 +1,21 @@
 <template>
   <div id="root">
-      <div class="row header">
-        <div class="col-md-4 header-game-img hd" >
-          <img  src="/app/assets/img/logo.png">
+    <div class="row header">
+      <div class="col-md-4 header-game-img hd" >
+        <img  src="/app/assets/img/logo.png">
+      </div>
+      <div class="col-md-4 header-title-game hd">
+        <div class="row">
+          <span class="topics">Topic</span>
         </div>
-        <div class="col-md-4 header-title-game hd">
-          <div class="row">
-            <span class="topics">Topics</span>
-          </div>
-          <div class="row sitcoms">
-            SITCOMS
-          </div>
-        </div>
-        <div class="col-md-4 header-game-right hd">
-          Leave this room
+        <div class="row sitcoms">
+          Chill
         </div>
       </div>
+      <div class="col-md-4 header-game-right hd">
+        Leave this room
+      </div>
+    </div>
     <game-view></game-view>
   </div>
 </template>
@@ -27,7 +27,13 @@ import GameView from './GameView.vue';
 export default {
   name: 'Game',
   components: {
-      'game-view': GameView,
+    'game-view': GameView,
+  },
+  props: ['room'],
+  created() {
+    if (!window.currentUser) {
+      this.$router.push('/');
+    }
   }
 };
 </script>

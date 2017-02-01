@@ -258,6 +258,7 @@ a:hover{
   width: 80%;
   margin: auto;
   text-align: center;
+  margin-top: 200px;
 }
 
 #send{
@@ -295,7 +296,7 @@ a:hover{
   font-family:"GothamBold";
 }
 
-.splashmsg{
+.spmsg{
   font-family:"bernie";
   height:200px;
 }
@@ -398,7 +399,7 @@ ul#hor {
     transform: rotate(-15deg);
   }
   100%{
-     transform: rotate(15deg);
+    transform: rotate(15deg);
   }
 }
 
@@ -442,4 +443,8 @@ ul#hor {
   input[type='text'] {
     color: white;
   }
+}
+
+.beber {
+  font-family: 'bernie';
 }
