@@ -27,7 +27,7 @@ export default {
                 window.currentUser = {
                   id: response.id,
                   name: response.name,
-                  avatarUrl: response.picture_small
+                  avatarUrl: response.picture_medium
                 };
                 self.$router.push('/public');
               });
@@ -53,7 +53,7 @@ export default {
                 window.currentUser = {
                   id: response.id,
                   name: response.name,
-                  avatarUrl: response.picture_small
+                  avatarUrl: response.picture_medium
                 };
               });
             }

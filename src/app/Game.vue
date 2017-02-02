@@ -1,8 +1,8 @@
 <template>
-  <div id="root">
+  <div id="root" class="container-fluid">
     <div class="row header">
       <div class="col-md-4 header-game-img hd" >
-        <img  src="/app/assets/img/logo.png">
+        <img  src="/app/assets/img/logo@2x.png">
       </div>
       <div class="col-md-4 header-title-game hd">
         <div class="row">
