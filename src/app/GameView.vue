@@ -1,13 +1,13 @@
 <template>
   <div class="gameview">
     <div class="row">
-      <ul id="hor">
-        <li v-for="player in players">
-          <img :src="player.avatarUrl" class="player_avatar">
-          <span>{{player.name}}</span>
-          <span class="score">{{player.score}}</span>
-        </li>
-      </ul>
+      <transition-group name="flip-list" tag="ul" id="hor"> <!-- Enables smooth transitioning -->
+          <li v-for="player in sortedListPlayers" v-bind:key="player">
+            <img :src="player.avatarUrl" class="player_avatar">
+            <span>{{player.name}}</span>
+            <span class="score">{{player.score}}</span>
+          </li>
+      </transition-group>
       <player-component></player-component>
     </div>
     <div class="row">
@@ -44,6 +44,13 @@ export default {
       showAnswer: false
     };
   },
+  computed: {
+    sortedListPlayers: function() {
+      return this.players.sort(function (player_a, player_b) {
+        return player_b.score - player_a.score;
+      })
+    }
+  },
   created() {
     window.socket = this.socket = io.connect('http://' + window.location.hostname + ':3000');
     window.room = this.room = 'playlist/1570259211';
@@ -57,6 +64,10 @@ export default {
     window.socket.on('ServerGoodAnswerBroadcast', this.serveGoodAnswerBroadcastSocketHandler);
     window.socket.on('ServerGoodAnswerMessage', this.serveGoodAnswerMessageSocketHandler);
     window.socket.on('PlayerLeaveBroadcast', this.playerLeaveBroadcastSocketHandler);
+
+    // Register debug functions
+    window.debugAddNewFakePlayer = this.debugAddNewFakePlayer;
+    window.debugAddScorePlayerIndex= this.debugAddScorePlayerIndex;
   },
   methods: {
     newPlayerSocketHandler: function(message) {
@@ -145,7 +156,16 @@ export default {
         return value.id !== message.id;
       });
 
-    }
+    },
+
+    //Debug functions
+    debugAddNewFakePlayer: function() {
+      this.players.push({id:1,name:"Jacques",score:0})
+    },
+
+    debugAddScorePlayerIndex: function(ind) {
+      this.players[ind].score++
+    },
   }
 };
 </script>
