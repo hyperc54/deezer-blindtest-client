@@ -26,7 +26,7 @@ import AnswerBar from './game/AnswerBar.vue';
 import SplashMessage from './game/SplashMessage.vue';
 import * as io from 'socket.io-client';
 
-const socket = io.connect('http://172.16.3.165:3000');
+const socket = io.connect('http://localhost:3000');
 
 export default {
   name: 'GameView',
@@ -95,7 +95,7 @@ export default {
         if (value.id == message.id) {
           player = '<span>' + value.name + '</span>';
         }
-      })
+      });
       this.answer = message.message.replace('%s', player);
       this.showAnswer = true;
       setTimeout(() => {
@@ -110,7 +110,7 @@ export default {
           player = '<span>' + value.name + '</span>';
           value.score = message.newScore;
         }
-      })
+      });
       this.answer = "Good answer ! " + player;
       this.showAnswer = true;
       setTimeout(() => {
@@ -122,9 +122,9 @@ export default {
       this.answer = "Good answer ! " + '<span>' + window.currentUser.name + '</span>';
       this.players.forEach((value) => {
         if (value.id == window.currentUser.id) {
-          value.score++;
+          value.score = message.newScore;
         }
-      })
+      });
       this.showAnswer = true;
       setTimeout(() => {
         this.showAnswer = false;
