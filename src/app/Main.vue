@@ -11,7 +11,6 @@
 <script>
 import Header from './Header.vue';
 import Title from './Title.vue';
-import Techs from './techs/Techs.vue';
 import Footer from './Footer.vue';
 
 export default {
@@ -19,7 +18,6 @@ export default {
   components: {
     'header-component': Header,
     'title-component': Title,
-    'techs': Techs,
     'footer-component': Footer
   }
 };
