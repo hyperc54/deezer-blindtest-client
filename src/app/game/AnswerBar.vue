@@ -6,7 +6,6 @@
                     <img :src="playerAvatar" class="player_avatar">
                     <input autocomplete="off" id="blast" type="text" class="form-control" v-model="answer"
                            placeholder="" autofocus/>
-                    <div class="vspace20"></div>
                     <button id="send" class="btn btn-success" type="submit">SEND</button>
                 </form>
             </div><!-- /input-group -->

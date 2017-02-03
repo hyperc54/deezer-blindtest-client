@@ -254,10 +254,8 @@ a:hover {
 }
 
 #blast {
-  margin-right: 30px;
   display: inline-block;
-  float: left;
-  width: 660px;
+  float: initial;
   height: 56px;
   border-radius: 6px;
   border: solid 2px rgb(164, 159, 182);
@@ -267,15 +265,14 @@ a:hover {
   color: white;
   text-transform: uppercase;
   font-family: "GothamBook", serif;
+  width:75%;
 }
 
 #input-rep {
   width: 80%;
   text-align: center;
-  margin: 200px -10px auto auto;
+  margin:200px auto auto auto;
   .player_avatar {
-    position: absolute;
-    left: -100px;
     display: inline-block;
     float: left;
   }
@@ -283,14 +280,13 @@ a:hover {
 
 #send {
   display: inline-block;
-  float: left;
+  float: right;
   width: 100px;
   height: 48px;
   border-radius: 6px;
   background-color: #ea1ad5;
   border: none;
   font-size: 24px;
-  margin-right: 30px;
   margin-top: 5px;
 
   font-family: "GothamBook", serif;
