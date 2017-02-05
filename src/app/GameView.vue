@@ -15,7 +15,9 @@
     </div>
     <splash-message :showMessage="showMessage" user='Jean-Michel' :answer="answer"></splash-message>
     <splash-solution :showSolution="showSolution" :artist='artist_solution' :title_track="track_solution" :cover_url="cover_url"></splash-solution>
-    <answer-bar @answerSent="sendAnswer"></answer-bar>
+    <div class="row game-footer">
+      <answer-bar @answerSent="sendAnswer"></answer-bar>
+    </div>
   </div>
 
 </template>
