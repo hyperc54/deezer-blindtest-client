@@ -85,7 +85,7 @@ export default {
     },
 
     newPlayerBroadcastSocketHandler: function(message) {
-      this.updatePlayerList(message.players);
+      this.updatePlayerList(message);
     },
 
     startTrackSocketHandler: function(message) {
