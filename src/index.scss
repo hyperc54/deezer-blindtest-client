@@ -469,3 +469,55 @@ ul#hor {
 .flip-list-move {
   transition: transform 1s;
 }
+
+
+.splash-solutions{
+  position:absolute;
+  width:400px;
+  height:400px;
+  left:50%;
+  top:25%;
+  margin-left:-200px;
+  text-align: center;
+}
+
+.splash-solution-msg {
+  font-size: x-large;
+  text-align: center;
+  color: whitesmoke;
+  text-transform: uppercase;
+  font-family: "GothamBook", serif;
+}
+
+.splash-solution-enter-active {
+  animation: splash-solution-in 1.5s;
+}
+.splash-solution-leave-active {
+  animation: splash-solution-out 1.5s;
+}
+@keyframes splash-solution-in {
+  0% {
+    transform: scale(0);
+    opacity:0;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity:1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes splash-solution-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity:1;
+  }
+  100% {
+    transform: scale(0);
+    opacity:0;
+  }
+}

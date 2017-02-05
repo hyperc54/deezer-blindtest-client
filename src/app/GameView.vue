@@ -13,7 +13,8 @@
     <div class="row">
       <timer-component :countDown="countDown" ref='timer'></timer-component>
     </div>
-    <splash-message :showAnswer="showAnswer" user='Jean-Michel' :answer="answer"></splash-message>
+    <splash-message :showMessage="showMessage" user='Jean-Michel' :answer="answer"></splash-message>
+    <splash-solution :showSolution="showSolution" :artist='artist_solution' :title_track="track_solution" :cover_url="cover_url"></splash-solution>
     <answer-bar @answerSent="sendAnswer"></answer-bar>
   </div>
 
@@ -24,6 +25,7 @@ import Timer from './game/Timer.vue';
 import Player from './game/Player.vue';
 import AnswerBar from './game/AnswerBar.vue';
 import SplashMessage from './game/SplashMessage.vue';
+import SplashSolution from './game/SplashSolution.vue';
 import * as io from 'socket.io-client';
 
 const socket = io.connect('http://localhost:3000');
@@ -34,14 +36,16 @@ export default {
     'timer-component': Timer,
     'player-component': Player,
     'answer-bar': AnswerBar,
-    'splash-message': SplashMessage
+    'splash-message': SplashMessage,
+    'splash-solution': SplashSolution
   },
   data() {
     return {
       players: [],
       countDown: 30,
       socket: null,
-      showAnswer: false
+      showMessage: false,
+      showSolution: false
     };
   },
   computed: {
@@ -94,19 +98,26 @@ export default {
     },
 
     endTrackSocketHandler: function(message) {
-      this.answer = "The answer was : %track by %artist".replace("%track", message.answer.track).replace("%artist", message.answer.artist);
-      this.showAnswer = true;
-      setTimeout(() => {
-        this.showAnswer = false;
-      }, 4000);
+      self = this;
+      DZ.api('/track/'+message.answer.id, function(response){
+        self.cover_url = response.album.cover_medium;
+        self.artist_solution = message.answer.artist;
+        self.track_solution = message.answer.track;
+        self.showSolution = true;
+        setTimeout(() => {
+          self.showSolution = false;
+        }, 4000);
+      });
+
       DZ.player.pause();
     },
 
+
     serverBadAnswerSocketHandler: function(message) {
       this.answer = message.message;
-      this.showAnswer = true;
+      this.showMessage = true;
       setTimeout(() => {
-        this.showAnswer = false;
+        this.showMessage = false;
       }, 2000);
     },
 
@@ -118,9 +129,9 @@ export default {
         }
       });
       this.answer = message.message.replace('%s', player);
-      this.showAnswer = true;
+      this.showMessage = true;
       setTimeout(() => {
-        this.showAnswer = false;
+        this.showMessage = false;
       }, 2000);
     },
 
@@ -133,9 +144,9 @@ export default {
         }
       });
       this.answer = "Good answer ! " + player;
-      this.showAnswer = true;
+      this.showMessage = true;
       setTimeout(() => {
-        this.showAnswer = false;
+        this.showMessage = false;
       }, 2000);
     },
 
@@ -146,9 +157,9 @@ export default {
           value.score = message.newScore;
         }
       });
-      this.showAnswer = true;
+      this.showMessage = true;
       setTimeout(() => {
-        this.showAnswer = false;
+        this.showMessage = false;
       }, 2000);
     },
 
