@@ -13,7 +13,9 @@
     <div class="row">
       <timer-component :countDown="countDown" ref='timer'></timer-component>
     </div>
-    <splash-message :showMessage="showMessage" user='Jean-Michel' :answer="answer"></splash-message>
+    <div class="row sp-container">
+      <splash-message :showMessage="showMessage" user='Jean-Michel' :answer="answer"></splash-message>
+    </div>
     <splash-solution :showSolution="showSolution" :artist='artist_solution' :title_track="track_solution" :cover_url="cover_url"></splash-solution>
     <div class="row game-footer">
       <answer-bar @answerSent="sendAnswer"></answer-bar>
