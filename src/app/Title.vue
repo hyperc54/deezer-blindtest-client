@@ -41,7 +41,7 @@ export default {
     let self = this;
     DZ.init({
       appId  : '130151',
-      channelUrl : 'http://' + window.location.hostname + ':' + '3001'+ '/channel',
+      channelUrl : 'http://' + window.location.hostname + ':' + '3001'+ '/channel.html',
       player: {
         container: 'dz-root',
         width:0,

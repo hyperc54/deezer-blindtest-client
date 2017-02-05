@@ -67,11 +67,16 @@ export default {
 
     // Register debug functions
     window.debugAddNewFakePlayer = this.debugAddNewFakePlayer;
-    window.debugAddScorePlayerIndex= this.debugAddScorePlayerIndex;
+    window.debugAddScorePlayerIndex = this.debugAddScorePlayerIndex;
+    window.debugGetThisTest = this.debugGetThisTest;
   },
   methods: {
     newPlayerSocketHandler: function(message) {
-      this.players = message.players;
+      message.players.forEach((value) =>{
+        if(!this.players.includes(value)){
+          this.players.push(value);
+        }
+      })
     },
 
     newPlayerBroadcastSocketHandler: function(message) {
@@ -155,17 +160,18 @@ export default {
       this.players = this.players.filter((value) => {
         return value.id !== message.id;
       });
-
     },
 
     //Debug functions
     debugAddNewFakePlayer: function() {
-      this.players.push({id:1,name:"Jacques",score:0})
+      this.players.push({id:1,name:"Jacques",score:0});
     },
-
+    debugGetThisTest: function() {
+      console.log(this);
+    },
     debugAddScorePlayerIndex: function(ind) {
       this.players[ind].score++
-    },
+    }
   }
 };
 </script>
