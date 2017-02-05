@@ -71,16 +71,21 @@ export default {
     window.debugGetThisTest = this.debugGetThisTest;
   },
   methods: {
-    newPlayerSocketHandler: function(message) {
-      message.players.forEach((value) =>{
+
+    updatePlayerList : function(player_list){
+      player_list.forEach((value) =>{
         if(!this.players.includes(value)){
           this.players.push(value);
         }
       })
     },
 
+    newPlayerSocketHandler: function(message) {
+      this.updatePlayerList(message.players);
+    },
+
     newPlayerBroadcastSocketHandler: function(message) {
-      this.players = message;
+      this.updatePlayerList(message.players);
     },
 
     startTrackSocketHandler: function(message) {
