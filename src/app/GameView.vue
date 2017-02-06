@@ -81,8 +81,8 @@ export default {
   methods: {
 
     updatePlayerList : function(player_list){
-      player_list.map(function (i) { return i.id }).forEach((value) =>{
-        if(!this.players.map(function (i) { return i.id }).includes(value)){
+      player_list.forEach((value) =>{
+        if(!this.players.map(function (i) { i.id }).includes(value.id)){
           this.players.push(value);
         }
       })
