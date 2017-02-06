@@ -2,11 +2,11 @@
   <div class="gameview">
     <div class="row">
       <transition-group name="flip-list" tag="ul" id="hor"> <!-- Enables smooth transitioning -->
-          <li v-for="player in sortedListPlayers" v-bind:key="player">
-            <img :src="player.avatarUrl" class="player_avatar">
-            <span>{{player.name}}</span>
-            <span class="score">{{player.score}}</span>
-          </li>
+        <li v-for="player in sortedListPlayers" v-bind:key="player">
+          <img :src="player.avatarUrl" class="player_avatar">
+          <span>{{player.name}}</span>
+          <span class="score">{{player.score}}</span>
+        </li>
       </transition-group>
       <player-component></player-component>
     </div>
@@ -61,7 +61,7 @@ export default {
   },
   created() {
     window.socket = this.socket = io.connect('http://' + window.location.hostname + ':3000');
-    window.room = this.room = 'playlist/1570259211';
+    window.room = this.room = 'playlist/1930969042';
     window.socket.emit('join', window.room, window.currentUser);
     window.socket.on('NewPlayerMessage', this.newPlayerSocketHandler);
     window.socket.on('NewPlayerBroadcast', this.newPlayerBroadcastSocketHandler);
@@ -82,7 +82,10 @@ export default {
 
     updatePlayerList : function(player_list){
       player_list.forEach((value) =>{
-        if(!this.players.map(function (i) { i.id }).includes(value.id)){
+        let containsPlayer = this.players.map((i) => {
+          return i.id;
+        }).includes(value.id);
+        if(!containsPlayer){
           this.players.push(value);
         }
       })
@@ -93,6 +96,7 @@ export default {
     },
 
     newPlayerBroadcastSocketHandler: function(message) {
+      console.log(message)
       this.updatePlayerList(message);
     },
 
