@@ -50,13 +50,7 @@ module.exports = {
         ]
       },
       {
-        test: /.otf/,
-        loaders: [
-          'file-loader'
-        ]
-      },
-      {
-        test: /.ttf/,
+        test: /.(otf|ttf|eot|svg|woff)/,
         loaders: [
           'file-loader'
         ]

@@ -32,7 +32,7 @@ import SplashMessage from './game/SplashMessage.vue';
 import SplashSolution from './game/SplashSolution.vue';
 import * as io from 'socket.io-client';
 
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('http://api.blindtest.imperialcoloc.ovh');
 
 export default {
   name: 'GameView',
@@ -60,7 +60,7 @@ export default {
     }
   },
   created() {
-    window.socket = this.socket = io.connect('http://' + window.location.hostname + ':3000');
+    window.socket = this.socket = io.connect('http://api.blindtest.imperialcoloc.ovh');
     window.room = this.room = 'playlist/1930969042';
     window.socket.emit('join', window.room, window.currentUser);
     window.socket.on('NewPlayerMessage', this.newPlayerSocketHandler);

@@ -25,10 +25,12 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader?minimize!sass-loader!postcss-loader'
-        })
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+          'postcss-loader',
+        ]
       },
       {
         test: /\.js$/,
@@ -41,6 +43,24 @@ module.exports = {
         test: /.vue$/,
         loaders: [
           'vue-loader'
+        ]
+      },
+      {
+        test: /.png$/,
+        loaders: [
+          'file-loader'
+        ]
+      },
+      {
+        test: /.(otf|ttf|eot|svg|woff)/,
+        loaders: [
+          'file-loader'
+        ]
+      },
+      {
+        test: /.map$/,
+        loaders: [
+          'file-loader'
         ]
       }
     ]
@@ -73,5 +93,8 @@ module.exports = {
   entry: {
     app: `./${conf.path.src('index')}`,
     vendor: Object.keys(pkg.dependencies)
+  },
+  node: {
+    fs: "empty"
   }
 };
