@@ -62,6 +62,12 @@ module.exports = {
         loaders: [
           'file-loader'
         ]
+      },
+      {
+        test: /channel.html$/,
+        loaders: [
+          'file-loader?name=[name].[ext]&context=.'
+        ]
       }
     ]
   },
@@ -91,7 +97,10 @@ module.exports = {
     filename: '[name]-[hash].js'
   },
   entry: {
-    app: `./${conf.path.src('index')}`,
+    app: [
+      `./${conf.path.src('index')}`,
+      `./${conf.path.src('channel.html')}`
+    ],
     vendor: Object.keys(pkg.dependencies)
   },
   node: {
