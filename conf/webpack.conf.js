@@ -68,6 +68,10 @@ module.exports = {
         postcss: () => [autoprefixer]
       },
       debug: true
+    }),
+    new webpack.DefinePlugin({
+      "process.env.APP_ID": "'223904'",
+      "process.env.SERVER_DOMAIN": "'api.blindtest.imperialcoloc.ovh'",
     })
   ],
   devtool: 'source-map',

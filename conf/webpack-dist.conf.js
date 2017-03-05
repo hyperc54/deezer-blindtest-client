@@ -78,9 +78,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html')
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {unused: true, dead_code: true, warnings: false} // eslint-disable-line camelcase
     }),
@@ -90,7 +87,13 @@ module.exports = {
       options: {
         postcss: () => [autoprefixer]
       }
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+      "process.env.APP_ID": "'227102'",
+      "process.env.SERVER_DOMAIN": "'api.blindtest.imperialcoloc.ovh'",
     })
+
   ],
   output: {
     path: path.join(process.cwd(), conf.paths.dist),

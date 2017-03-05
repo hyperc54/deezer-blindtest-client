@@ -6,11 +6,14 @@
 </template>
 
 <script>
+import config from '../config.js' ;
+
 export default {
   name: 'Title',
   data() {
     return {
-      dzReady: false
+      dzReady: false,
+      test: config.test
     }
   },
 
@@ -40,7 +43,7 @@ export default {
   created() {
     let self = this;
     DZ.init({
-      appId  : '223904',
+      appId  : config.appId,
       channelUrl : 'http://' + window.location.hostname + ':' + '3001'+ '/channel.html',
       player: {
         container: 'dz-root',
