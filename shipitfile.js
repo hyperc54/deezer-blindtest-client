@@ -9,11 +9,11 @@ module.exports = function(shipit) {
       workspace: "/tmp/deezer-blindtest-client",
       deployTo: "/home/pierre/deezer-blindtest-client",
       repositoryUrl: "https://github.com/hyperc54/deezer-blindtest-client.git",
-      ignores: [".git"],
+      ignores: [".git", "node_modules"],
       keepReleases: 2,
       shallowClone: true,
       yarn: {
-        remote: true,
+        remote: false,
         yarnOrNpm: "npm"
       }
     },
@@ -23,13 +23,12 @@ module.exports = function(shipit) {
   });
 
   utils.registerTask(shipit, "build-assets", () => {
-    shipit.log("Reload gracefully the blindtest server app.");
+    shipit.log("Build final assets.");
 
-    return shipit.remote("cd /home/pierre/deezer-blindtest-client/current && npm run build");
+    return shipit.local("cd /tmp/deezer-blindtest-client && npm run build");
   });
 
-   shipit.on("published", () => {
-     // FIXME: TACHE A EFFECTUER AAAAAAVVVVVVVVANT LE PUBLISHED
+   shipit.on("yarn_installed", () => {
      utils.runTask(shipit, "build-assets");
    });
 };

@@ -2,7 +2,7 @@
   <div id="root">
     <header-component></header-component>
     <main>
-      <title-component></title-component>
+      <launcher-component></launcher-component>
     </main>
     <footer-component></footer-component>
   </div>
@@ -10,14 +10,14 @@
 
 <script>
 import Header from './Header.vue';
-import Title from './Title.vue';
+import Launcher from './Launcher.vue';
 import Footer from './Footer.vue';
 
 export default {
   name: 'Main',
   components: {
     'header-component': Header,
-    'title-component': Title,
+    'launcher-component': Launcher,
     'footer-component': Footer
   }
 };

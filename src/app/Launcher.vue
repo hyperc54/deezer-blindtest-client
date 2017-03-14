@@ -1,6 +1,7 @@
 <template>
   <div class="title">
     <h1 class="title-h1 beber">Welcome to Deezer's own BlindTest app !</h1>
+    <h2>{{ state }}</h2>
     <a href="#" v-show="dzReady" v-on:click="logInOrPlay"><div class="title-h2 beber"><h2>Play</br><span>NOW</span></h2></div></a>
   </div>
 </template>
@@ -9,11 +10,11 @@
 import config from '../config.js' ;
 
 export default {
-  name: 'Title',
+  name: 'Launcher',
   data() {
     return {
+      state: 'Chargement player Deezer',
       dzReady: false,
-      test: config.test
     }
   },
 

@@ -1,4 +1,4 @@
-import Title from './Title.vue';
+import Launcher from './Launcher.vue';
 
 describe('Title', () => {
   it('should be a title', () => {
