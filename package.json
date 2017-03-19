@@ -56,8 +56,6 @@
     "shipit-utils": "^1.4.0",
     "shipit-yarn": "^0.2.0",
     "style-loader": "^0.14.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.3.2",
     "webpack": "^2.2.1",
