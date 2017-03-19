@@ -1,5 +1,5 @@
 export default {
-  id: 0,
+  id: -1,
   name: 'nooone',
   avatarUrl: 'none'
 };

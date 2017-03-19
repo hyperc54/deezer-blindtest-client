@@ -32,7 +32,7 @@ export default {
   },
   props: ['room'],
   created() {
-    if (user['id']=='none') {
+    if (user['id']==-1) {
       this.$router.push('/');
     }
   }
