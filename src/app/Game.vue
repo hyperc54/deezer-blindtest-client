@@ -23,6 +23,7 @@
 <script>
 import Header from './Header.vue';
 import GameView from './GameView.vue';
+import user from './user/currentUser';
 
 export default {
   name: 'Game',
@@ -31,7 +32,7 @@ export default {
   },
   props: ['room'],
   created() {
-    if (!window.currentUser) {
+    if (user['id']=='none') {
       this.$router.push('/');
     }
   }

@@ -12,19 +12,21 @@
 </template>
 
 <script>
-    export default {
-        name: 'AnswerBar',
-        data() {
-            return {
-                answer: "",
-                playerAvatar: window.currentUser.avatarUrl || ''
-            };
-        },
-        methods: {
-            sendAnswer: function () {
-                this.$emit('answerSent', this.answer);
-                this.answer = "";
-            }
-        }
-    };
+import user from '../user/currentUser'
+
+  export default {
+      name: 'AnswerBar',
+      data() {
+          return {
+              answer: "",
+              playerAvatar: user.avatarUrl || ''
+          };
+      },
+      methods: {
+          sendAnswer: function () {
+              this.$emit('answerSent', this.answer);
+              this.answer = "";
+          }
+      }
+  };
 </script>

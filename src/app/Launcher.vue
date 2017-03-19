@@ -1,68 +1,78 @@
 <template>
   <div class="title">
     <h1 class="title-h1 beber">Welcome to Deezer's own BlindTest app !</h1>
-    <h2>{{ state }}</h2>
-    <a href="#" v-show="dzReady" v-on:click="logInOrPlay"><div class="title-h2 beber"><h2>Play</br><span>NOW</span></h2></div></a>
+    <login
+      v-on:userConnected="setUserConnected"
+      v-show="dzReady"
+      v-bind:isConnected="userConnected"
+      v-bind:dzReady="dzReady">
+    </login>
+    <a href="#" v-show="dzReady&userConnected" v-on:click="play"><div class="title-h2 beber"><h2>Play</br><span>NOW</span></h2></div></a>
   </div>
 </template>
 
 <script>
 import config from '../config.js' ;
+import user from './user/currentUser';
+import Login from './Login.vue';
 
 export default {
   name: 'Launcher',
+
   data() {
     return {
-      state: 'Chargement player Deezer',
       dzReady: false,
+      userConnected: false,
+      user:user
     }
   },
 
+  components:{
+    'login': Login
+  },
+
   methods: {
-    logInOrPlay: function() {
-      if (window.currentUser){
-        this.$router.push('/public');
-      } else {
-        self = this;
-        DZ.login(function(response) {
-          console.log(response.authResponse);
-          if(response.authResponse && response.authResponse.accessToken) {
-              DZ.api('/user/me', function(response) {
-                window.currentUser = {
-                  id: response.id,
-                  name: response.name,
-                  avatarUrl: response.picture_medium
-                };
-                self.$router.push('/public');
-              });
-          }
-        });
-      }
+    play: function() {
+      this.$router.push('/public');
+    },
+    setUserInfos: function(){
+      DZ.api('/user/me', function(response) {
+        user['id'] = response.id;
+        user['name'] = response.name;
+        user['avatarUrl'] = response.picture_medium;
+      });
+    },
+    setUserConnected: function (arg) {
+      this.setUserInfos();
+      this.userConnected = arg[0];
+    },
+    checkLoginStatus: function(){
+      self = this;
+      DZ.getLoginStatus(function(response) {
+        if (response.authResponse) {
+          self.setUserInfos();
+          self.userConnected = true;
+        }
+        console.log("DZ player Ready to rock !!");
+        self.dzReady = true;
+      });
     }
   },
 
   created() {
-    let self = this;
+    let vm = this;
+
+    if (window.location.hostname=='localhost'){var channel = 'localhost:3001';} else {var channel = window.location.hostname;}
+
     DZ.init({
       appId  : config.appId,
-      channelUrl : 'http://' + window.location.hostname + '/channel.html',
+      channelUrl : 'http://' + channel +'/channel.html',
       player: {
         container: 'dz-root',
         width:0,
         height:0,
         onload:function(){
-          DZ.getLoginStatus(function(response) {
-            if (response.authResponse) {
-              DZ.api('/user/me', function(response) {
-                window.currentUser = {
-                  id: response.id,
-                  name: response.name,
-                  avatarUrl: response.picture_medium
-                };
-              });
-            }
-            self.dzReady = true;
-          });
+          vm.checkLoginStatus();
         }
       }
     });

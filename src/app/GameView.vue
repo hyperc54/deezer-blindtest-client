@@ -32,8 +32,8 @@ import SplashMessage from './game/SplashMessage.vue';
 import SplashSolution from './game/SplashSolution.vue';
 import * as io from 'socket.io-client';
 import config from '../config.js' ;
+import user from './user/currentUser';
 
-const socket = io.connect('http://' + config.serverDomain);
 
 export default {
   name: 'GameView',
@@ -63,7 +63,7 @@ export default {
   created() {
     window.socket = this.socket = io.connect('http://' + config.serverDomain);
     window.room = this.room = 'playlist/1930969042';
-    window.socket.emit('join', window.room, window.currentUser);
+    window.socket.emit('join', window.room, user);
     window.socket.on('NewPlayerMessage', this.newPlayerSocketHandler);
     window.socket.on('NewPlayerBroadcast', this.newPlayerBroadcastSocketHandler);
     window.socket.on('StartTrackMessage', this.startTrackSocketHandler);
@@ -160,9 +160,9 @@ export default {
     },
 
     serveGoodAnswerMessageSocketHandler: function(message) {
-      this.answer = "Good answer ! " + '<span>' + window.currentUser.name + '</span>';
+      this.answer = "Good answer ! " + '<span>' + user['name'] + '</span>';
       this.players.forEach((value) => {
-        if (value.id == window.currentUser.id) {
+        if (value.id == user['id']) {
           value.score = message.newScore;
         }
       });
