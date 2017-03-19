@@ -34,26 +34,29 @@ export default {
     play: function() {
       this.$router.push('/public');
     },
-    setUserInfos: function(){
+    setUserInfos: function(callback){
       DZ.api('/user/me', function(response) {
         user['id'] = response.id;
         user['name'] = response.name;
         user['avatarUrl'] = response.picture_medium;
+        callback && callback();
       });
     },
     setUserConnected: function (arg) {
-      this.setUserInfos();
-      this.userConnected = arg[0];
+      this.setUserInfos(function () {
+        this.userConnected = arg[0];
+      });
     },
     checkLoginStatus: function(){
       self = this;
       DZ.getLoginStatus(function(response) {
         if (response.authResponse) {
-          self.setUserInfos();
-          self.userConnected = true;
+          self.setUserInfos(function () {
+            self.userConnected = true;
+            console.log("DZ player Ready to rock !!");
+            self.dzReady = true;
+          });
         }
-        console.log("DZ player Ready to rock !!");
-        self.dzReady = true;
       });
     }
   },
