@@ -3,7 +3,6 @@
     <h1 class="title-h1 beber">Welcome to Deezer's own BlindTest app !</h1>
     <login
       v-on:userConnected="setUserConnected"
-      v-show="dzReady"
       v-bind:isConnected="userConnected"
       v-bind:dzReady="dzReady">
     </login>

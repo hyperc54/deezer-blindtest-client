@@ -4,7 +4,8 @@
     "tls": "0.0.1",
     "vue": "^2.0.1",
     "vue-resource": "^0.9.3",
-    "vue-router": "^2.0.0"
+    "vue-router": "^2.0.0",
+    "vue-spinner": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.2",
@@ -19,7 +20,7 @@
     "babel-runtime": "^6.11.6",
     "browser-sync": "^2.9.11",
     "browser-sync-spa": "^1.0.3",
-    "css-loader": "^0.23.1",
+    "css-loader": "^0.27.0",
     "del": "^2.0.2",
     "es6-shim": "^0.35.0",
     "eslint": "^3.2.2",
@@ -54,11 +55,13 @@
     "shipit-deploy": "^2.4.0",
     "shipit-utils": "^1.4.0",
     "shipit-yarn": "^0.2.0",
-    "style-loader": "^0.13.0",
+    "style-loader": "^0.14.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^9.3.2",
-    "webpack": "2.2.1",
-    "webpack-fail-plugin": "^1.0.5"
+    "webpack": "^2.2.1",
+    "webpack-fail-plugin": "^1.0.6"
   },
   "scripts": {
     "build": "gulp",

@@ -1,6 +1,6 @@
 <template>
   <div v-if="dzReady==false">
-
+    <pulse-loader :loading="true" :color="color" :size="size"></pulse-loader>
   </div>
   <div v-else>
     <h3 v-if="isConnected==true">Hey {{user.name}} !</h3>
@@ -14,6 +14,7 @@
 
 <script>
   import user from './user/currentUser';
+  import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
   export default {
     name: 'Login',
@@ -22,6 +23,9 @@
       return {
         user:user
       }
+    },
+    components:{
+      'pulse-loader': PulseLoader
     },
     methods: {
       logIn: function() {
