@@ -1,3 +1,10 @@
+$MAX_HEIGHT: 900px;
+
+$GAME_FOOTER_HEIGHT_HIGH: 200px;
+$GAME_FOOTER_HEIGHT_LOW: 100px;
+
+
+
 @font-face {
   font-family: "Gotham";
   src: url(app/assets/font/GothamNarrow-Medium.otf) format("truetype");
@@ -251,6 +258,7 @@ a:hover {
 .gameview {
   margin: auto;
   width: 100%;
+  height: 65%;
 }
 
 #blast {
@@ -315,7 +323,9 @@ a:hover {
 
 .spmsg {
   font-family: "bernie";
-  height: 200px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align:center;
 }
 
 .player_avatar {
@@ -330,6 +340,11 @@ a:hover {
 
 ul#hor .score {
   display: block;
+  @media screen and (max-height: $MAX_HEIGHT) {
+    height: 60px;
+    width: 60px;
+    font-size: 3.5rem;
+  }
   width: 100px;
   height: 100px;
   color: #eccde7;
@@ -339,7 +354,6 @@ ul#hor .score {
   border-top-color: rgba(255, 255, 255, 0.05);
   font-size: 6rem;
   margin-top: -10px;
-
   font-family: "GothamBold";
 
 }
@@ -367,13 +381,13 @@ ul#hor {
 }
 
 .sp-container{
-  height: 300px;
+  height: 50%;
   text-align: center;
 }
 
 .sp-container h2 {
   font-size: 75px;
-  line-height: 300px;
+  line-height: 100%;
   color: transparent;
   animation: blurFadeInOut 3s ease-in backwards;
 }
@@ -384,6 +398,18 @@ ul#hor {
 
 .sp-container h2.frame-1 {
   animation-delay: 0s;
+}
+
+.splash-messages{
+  height:100%;
+}
+
+
+
+.sp-content{
+  height: 100%;
+  display: table;
+  width: 100%;
 }
 
 @keyframes blurFadeInOut {
@@ -449,6 +475,9 @@ ul#hor {
 
 .splash-solutions{
   position:absolute;
+  @media screen and (max-height: $MAX_HEIGHT) {
+    height:100px;
+  }
   width:400px;
   height:400px;
   left:50%;
@@ -501,8 +530,15 @@ ul#hor {
 .game-footer{
   position: absolute;
   width: 100%;
-  height: 200px;
-  bottom: 10px;
+  height: $GAME_FOOTER_HEIGHT_HIGH;
   padding-top: 60px;
+  @media screen and (max-height: $MAX_HEIGHT) {
+    height: $GAME_FOOTER_HEIGHT_LOW;
+    padding-top: 20px;
+  }
+  bottom: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+
+
